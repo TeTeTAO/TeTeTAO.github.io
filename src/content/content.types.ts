@@ -5,6 +5,9 @@
 
 export type Category = "painting" | "photography";
 
+/** 图片方向，决定作品卡的宽高比，避免横图被裁切 */
+export type Orientation = "portrait" | "landscape" | "square";
+
 /**
  * 12 栏 × 3 行编辑网格中的预设槽位。
  * 想让作品出现在跨页的哪个区域，就选哪个槽位。
@@ -48,6 +51,8 @@ export interface Work {
   rotate?: number;
   /** 在槽位基础上的微调偏移（px） */
   offset?: { x?: number; y?: number };
+  /** 图片方向，决定作品卡宽高比；不填默认 portrait（竖版） */
+  orientation?: Orientation;
   /** 可选 alt 文本，无障碍用；不填则用 title */
   alt?: string;
 }
@@ -69,6 +74,17 @@ export interface Contact {
   website?: string;
 }
 
+export interface ProtectionConfig {
+  /** 是否在作品图上叠加 CSS 水印（截图会带水印，但不影响原图文件） */
+  watermark: boolean;
+  /** 水印文字，一般用作者名 / 站点名 */
+  watermarkText: string;
+  /** 是否禁用右键菜单（挡小白，挡不住 F12） */
+  disableContextMenu: boolean;
+  /** 是否禁用图片拖拽 */
+  disableDrag: boolean;
+}
+
 export interface SiteContent {
   magazineName: string;
   issue: string;
@@ -87,4 +103,6 @@ export interface SiteContent {
   chapters: Chapter[];
   works: Work[];
   contact: Contact;
+  /** 图片保护配置；不填则使用默认值 */
+  protection?: ProtectionConfig;
 }

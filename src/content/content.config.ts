@@ -25,6 +25,17 @@
  * │  rotate：旋转角度，建议 -2 ~ +2                       │
  * │  offset：{ x, y } 微调偏移（单位 px）                 │
  * │  spread：第几张跨页（从 1 开始，同跨页可放 1–3 张）   │
+ * │  orientation：图片方向                                │
+ * │     portrait  竖版（4:5，默认）                       │
+ * │     landscape 横版（3:2）                             │
+ * │     square    方版（1:1）                             │
+ * └──────────────────────────────────────────────────────┘
+ *
+ * ┌─ 图片保护（protection）──────────────────────────────┐
+ * │  deployed site 上的图片会叠加 CSS 水印、禁右键、禁拖拽│
+ * │  但仓库里的原图仍可被下载（public 仓库的本质）        │
+ * │  要彻底保护：上传前先跑 pnpm prepare:images 处理图片  │
+ * │  （压缩到 1600px + 加水印 + 清 EXIF），再上传处理后的 │
  * └──────────────────────────────────────────────────────┘
  */
 
@@ -96,6 +107,7 @@ export const siteContent: SiteContent = {
       span: 7,
       rotate: -1.2,
       offset: { x: 0, y: 16 },
+      orientation: "landscape",
     },
     {
       id: "dream-02",
@@ -110,6 +122,7 @@ export const siteContent: SiteContent = {
       slot: "right-bottom",
       span: 5,
       rotate: 1.5,
+      orientation: "portrait",
     },
     {
       id: "dream-03",
@@ -125,6 +138,7 @@ export const siteContent: SiteContent = {
       span: 8,
       rotate: -0.6,
       offset: { x: 24, y: 0 },
+      orientation: "landscape",
     },
     {
       id: "dream-04",
@@ -139,6 +153,7 @@ export const siteContent: SiteContent = {
       slot: "right-top",
       span: 6,
       rotate: 1.1,
+      orientation: "square",
     },
     {
       id: "dream-05",
@@ -154,6 +169,7 @@ export const siteContent: SiteContent = {
       span: 5,
       rotate: -1.8,
       offset: { x: 0, y: -12 },
+      orientation: "portrait",
     },
 
     // ===== 胶片摄影系列 =====
@@ -170,6 +186,7 @@ export const siteContent: SiteContent = {
       slot: "full-bleed",
       span: 12,
       rotate: 0,
+      orientation: "landscape",
     },
     {
       id: "film-02",
@@ -185,6 +202,7 @@ export const siteContent: SiteContent = {
       span: 7,
       rotate: -0.8,
       offset: { x: 0, y: 8 },
+      orientation: "landscape",
     },
     {
       id: "film-03",
@@ -199,6 +217,7 @@ export const siteContent: SiteContent = {
       slot: "right-bottom",
       span: 5,
       rotate: 1.4,
+      orientation: "portrait",
     },
     {
       id: "film-04",
@@ -213,6 +232,7 @@ export const siteContent: SiteContent = {
       slot: "center-top",
       span: 9,
       rotate: -0.4,
+      orientation: "landscape",
     },
   ],
 
@@ -223,5 +243,14 @@ export const siteContent: SiteContent = {
     weibo: "@your_handle",
     xiaohongshu: "@your_handle",
     website: "your-name.github.io",
+  },
+
+  // ─────────────── 图片保护配置 ───────────────
+  // deployed site 上的防护；仓库里的原图仍需上传前用脚本处理
+  protection: {
+    watermark: true,
+    watermarkText: "DREAMCORE & GRAIN",
+    disableContextMenu: true,
+    disableDrag: true,
   },
 };

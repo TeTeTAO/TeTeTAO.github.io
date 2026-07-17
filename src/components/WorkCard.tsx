@@ -1,7 +1,8 @@
-import type { Work } from "@/content/content.types";
+import type { Orientation, Work } from "@/content/content.types";
 import { gridColumnFor, gridRowFor, getGridPos } from "@/lib/slotGrid";
 import WorkImage from "./WorkImage";
 import { useReaderStore } from "@/store/readerStore";
+import { siteContent } from "@/content/content.config";
 
 interface WorkCardProps {
   work: Work;
@@ -9,9 +10,24 @@ interface WorkCardProps {
   ordinal: number;
 }
 
+/** 按 orientation 选 aspect ratio，避免横图被裁切 */
+function aspectFor(orientation: Orientation | undefined, isFullBleed: boolean): string {
+  if (isFullBleed) return "aspect-[16/9]";
+  switch (orientation) {
+    case "landscape":
+      return "aspect-[3/2]";
+    case "square":
+      return "aspect-square";
+    case "portrait":
+    default:
+      return "aspect-[4/5]";
+  }
+}
+
 /**
  * 单件作品卡：图 + 编号 + 标题 + 媒介年份 + 手记
  * 点击图片打开灯箱。
+ * 叠加 CSS 水印层（截图会带水印），保护 deployed site 上的图片。
  */
 export default function WorkCard({ work, ordinal }: WorkCardProps) {
   const openLightbox = useReaderStore((s) => s.openLightbox);
@@ -29,6 +45,9 @@ export default function WorkCard({ work, ordinal }: WorkCardProps) {
   };
 
   const isFullBleed = work.slot === "full-bleed";
+  const protection = siteContent.protection;
+  const showWatermark = protection?.watermark ?? true;
+  const watermarkText = protection?.watermarkText ?? siteContent.magazineName;
 
   return (
     <figure
@@ -43,18 +62,40 @@ export default function WorkCard({ work, ordinal }: WorkCardProps) {
         aria-label={`放大查看：${work.title}`}
       >
         <div
-          className={`relative overflow-hidden bg-cocoa/20 ${
-            isFullBleed ? "aspect-[16/9]" : "aspect-[4/5]"
-          }`}
+          className={`relative overflow-hidden bg-cocoa/20 ${aspectFor(
+            work.orientation,
+            isFullBleed,
+          )}`}
         >
           <WorkImage
             work={work}
-            className="h-full w-full object-cover"
+            className="h-full w-full object-cover select-none"
             loading={ordinal <= 2 ? "eager" : "lazy"}
           />
           {/* 胶片白边 */}
           <div className="pointer-events-none absolute inset-0 ring-1 ring-ink/15" />
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-cocoa-deep/25 via-transparent to-cream/10" />
+          {/* CSS 水印叠层：平铺半透明文字，截图会带上，但不影响原图文件 */}
+          {showWatermark && (
+            <div
+              className="pointer-events-none absolute inset-0 flex items-center justify-center overflow-hidden"
+              aria-hidden
+            >
+              <div
+                className="whitespace-nowrap font-mono text-[10px] uppercase tracking-caption text-paper/25 mix-blend-overlay"
+                style={{
+                  transform: "rotate(-28deg) scale(1.6)",
+                  letterSpacing: "0.4em",
+                }}
+              >
+                {Array.from({ length: 6 }).map((_, i) => (
+                  <span key={i} className="mx-8">
+                    {watermarkText}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       </button>
 

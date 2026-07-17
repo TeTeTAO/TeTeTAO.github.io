@@ -25,6 +25,11 @@ export default function Lightbox() {
   const work = siteContent.works.find((w) => w.id === workId);
   if (!work) return null;
 
+  const protection = {
+    watermark: siteContent.protection?.watermark ?? true,
+    watermarkText: siteContent.protection?.watermarkText ?? siteContent.magazineName,
+  };
+
   return (
     <div
       role="dialog"
@@ -50,10 +55,31 @@ export default function Lightbox() {
           <WorkImage
             work={work}
             reveal={false}
-            className="max-h-[78vh] w-auto object-contain"
+            className="max-h-[78vh] w-auto object-contain select-none"
             loading="eager"
           />
           <div className="pointer-events-none absolute inset-0 ring-1 ring-cream/20" />
+          {/* 灯箱水印叠层 */}
+          {protection.watermark && (
+            <div
+              className="pointer-events-none absolute inset-0 flex items-center justify-center overflow-hidden"
+              aria-hidden
+            >
+              <div
+                className="whitespace-nowrap font-mono text-[11px] uppercase tracking-caption text-cream/20 mix-blend-overlay"
+                style={{
+                  transform: "rotate(-28deg) scale(1.8)",
+                  letterSpacing: "0.5em",
+                }}
+              >
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <span key={i} className="mx-10">
+                    {protection.watermarkText}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
         <figcaption className="mt-4 flex items-baseline justify-between gap-6 text-cream">
           <div>
