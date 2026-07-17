@@ -9,57 +9,59 @@ export default {
     },
     extend: {
       colors: {
-        // 宣纸系（底色）
-        paper: "#ede2cb", // 主宣纸，米黄偏暖
-        "paper-warm": "#f2ead6", // 浅宣纸
-        "paper-dim": "#e3d6b8", // 深宣纸
-        // 墨色系
-        ink: "#1c1714", // 浓墨
-        "ink-soft": "#4a3f37", // 淡墨
-        "ink-faint": "#7a6f63", // 远墨
-        // 朱砂系（强调）
-        vermilion: "#9c2f2a", // 朱砂正红
-        "vermilion-bright": "#c14a3f", // 朱砂浅
-        "vermilion-deep": "#6e1f1c", // 朱砂深
-        // 石青系（青绿）
-        shiqing: "#2f5d6e", // 石青
-        "shiqing-light": "#4a7d8a", // 石青浅
-        // 胭脂系
-        yanzhi: "#7a2a3a", // 胭脂
-        // 赭石
-        zheshi: "#9c6b3f", // 赭石
-        // 黛色
-        dai: "#3a4a55", // 黛蓝灰
-        // 月白
-        yuebai: "#d8dee0", // 月白
-        // 金箔
-        gold: "#c9a96e", // 金箔
-        "gold-deep": "#a8895a", // 深金
-        // 浓墨深底（章节封面用）
-        mo: "#1c1714",
-        "mo-deep": "#0f0c0a",
-        "mo-soft": "#2e2620",
-        // 兼容旧名（保留 cream/lavender/cocoa 防止遗漏引用报错）
-        cream: "#c9a96e",
-        lavender: "#7a2a3a",
-        cocoa: "#1c1714",
-        "cocoa-deep": "#0f0c0a",
-        "cocoa-soft": "#2e2620",
-        rouge: "#9c2f2a",
-        "rouge-deep": "#6e1f1c",
-        sage: "#2f5d6e",
+        // 中性主色系：白 / 浅灰 / 炭黑
+        white: "#ffffff",
+        mist: "#fafafa", // 最浅灰，section 交替底
+        fog: "#f4f5f6", // 浅灰，卡片底/分隔
+        haze: "#eceef0", // 灰，边框/hover
+        stone: "#d8dade", // 中浅灰，禁用/次要边框
+        ash: "#8a8f96", // 中灰，次要文字
+        slate: "#5a6068", // 深灰，正文辅助
+        charcoal: "#2a2d33", // 炭黑，正文
+        ink: "#15171a", // 近黑，标题
+        // 强调色：静谧蓝
+        blue: "#3B6FB0", // 静谧蓝主色
+        "blue-deep": "#2E5A8E", // hover/按下
+        "blue-soft": "#EAF1F8", // 浅蓝底
+        "blue-mist": "#F4F8FC", // 最浅蓝
+        // 兼容旧名（防止遗漏引用报错，统一映射到新中性色）
+        paper: "#ffffff",
+        "paper-warm": "#fafafa",
+        "paper-dim": "#f4f5f6",
+        rouge: "#3B6FB0",
+        "rouge-deep": "#2E5A8E",
+        cream: "#8a8f96",
+        lavender: "#3B6FB0",
+        cocoa: "#15171a",
+        "cocoa-deep": "#000000",
+        "cocoa-soft": "#2a2d33",
+        sage: "#3B6FB0",
+        vermilion: "#3B6FB0",
+        gold: "#8a8f96",
+        mo: "#15171a",
+        "mo-deep": "#000000",
+        "mo-soft": "#2a2d33",
+        yuebai: "#fafafa",
+        yanzhi: "#3B6FB0",
+        zheshi: "#8a8f96",
+        dai: "#5a6068",
+        shiqing: "#3B6FB0",
       },
       fontFamily: {
-        display: ['"Noto Serif SC"', '"Cormorant Garamond"', "Songti SC", "STSong", "serif"],
-        body: ['"Noto Serif SC"', '"EB Garamond"', "Songti SC", "STSong", "serif"],
+        sans: ['"Inter"', '"Noto Sans SC"', "system-ui", "sans-serif"],
+        display: ['"Inter"', '"Noto Sans SC"', "system-ui", "sans-serif"],
+        body: ['"Inter"', '"Noto Sans SC"', "system-ui", "sans-serif"],
         mono: ['"JetBrains Mono"', "ui-monospace", "monospace"],
       },
       letterSpacing: {
-        masthead: "0.18em",
-        caption: "0.22em",
+        tightest: "-0.04em",
+        tighter: "-0.02em",
+        caption: "0.08em",
+        wider2: "0.16em",
       },
       maxWidth: {
-        spread: "1440px",
+        gallery: "1280px",
+        prose: "720px",
       },
     },
   },

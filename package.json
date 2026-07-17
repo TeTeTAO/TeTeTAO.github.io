@@ -12,15 +12,12 @@
     "prepare:images": "node scripts/prepare-images.mjs"
   },
   "dependencies": {
-    "@fontsource/cormorant-garamond": "^5.2.11",
-    "@fontsource/eb-garamond": "^5.2.7",
+    "@fontsource/inter": "^5.2.5",
     "@fontsource/jetbrains-mono": "^5.2.8",
-    "@fontsource/noto-serif-sc": "^5.2.9",
+    "@fontsource/noto-sans-sc": "^5.2.5",
     "clsx": "^2.1.1",
-    "lucide-react": "^0.511.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-router-dom": "^7.3.0",
     "tailwind-merge": "^3.0.2",
     "zustand": "^5.0.3"
   },
