@@ -11,6 +11,13 @@ export type Orientation = "portrait" | "landscape" | "square";
 /**
  * 12 栏 × 3 行编辑网格中的预设槽位。
  * 想让作品出现在跨页的哪个区域，就选哪个槽位。
+ *
+ * 大图槽位（推荐用来突出作品）：
+ *   full-bleed        整页出血横版（16:9，撑满整张跨页）
+ *   full-bleed-tall   整页出血竖版（4:5，撑满整张跨页）
+ *   left-full         左半页满高（占 6 栏 × 3 行，图占大半页）
+ *   right-full        右半页满高（占 6 栏 × 3 行，图占大半页）
+ *   center-full       中央满高（占 8 栏 × 3 行，居中大图）
  */
 export type Slot =
   | "left-top"
@@ -22,7 +29,11 @@ export type Slot =
   | "right-top"
   | "right-center"
   | "right-bottom"
-  | "full-bleed";
+  | "full-bleed"
+  | "full-bleed-tall"
+  | "left-full"
+  | "right-full"
+  | "center-full";
 
 export interface Work {
   /** 唯一 id，用作 React key 与 URL hash 锚点 */
