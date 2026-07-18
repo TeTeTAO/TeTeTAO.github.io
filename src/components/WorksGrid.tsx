@@ -90,7 +90,11 @@ export default function WorksGrid() {
     : undefined;
 
   return (
-    <section id="works" className="bg-white py-24 md:py-32">
+    <section
+      id="works"
+      className="bg-white pt-12 pb-24 md:pt-16 md:pb-32"
+      style={{ scrollMarginTop: "1rem" }}
+    >
       <div className="mx-auto max-w-gallery px-6 md:px-10">
         {/* 标题 */}
         <div className="reveal mb-10 flex items-baseline gap-4 md:mb-14">
