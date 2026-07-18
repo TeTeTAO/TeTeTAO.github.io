@@ -40,7 +40,7 @@ export const siteContent: SiteContent = {
   brand: "特特特",
   heroGreeting: "欢迎来到特特特",
   tagline: "绘画 · 装置 · 摄影 — 一处安静的展示空间。",
-  heroImage: "/works/hero.png",
+  heroImage: "/works/hero.jpg",
 
   // ─────────────── 类别（控制筛选 tab 顺序与文案） ───────────────
   categories: [

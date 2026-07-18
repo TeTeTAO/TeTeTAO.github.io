@@ -15,6 +15,8 @@ import '@fontsource/noto-sans-sc/700.css'
 // 等宽：JetBrains Mono（编号/版权）
 import '@fontsource/jetbrains-mono/400.css'
 import '@fontsource/jetbrains-mono/500.css'
+// 手绘风中文：马善政毛笔行书（Hero「你好」用）
+import '@fontsource/ma-shan-zheng/400.css'
 
 import './index.css'
 

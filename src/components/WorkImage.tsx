@@ -12,9 +12,9 @@ interface WorkImageProps {
 }
 
 /**
- * 图片组件：尝试加载 work.src，
- * 失败时自动回退到生成的梦核胶片占位图，
- * 让作者没把真实图片丢进 public/works/ 时也好看。
+ * 图片组件：渐进模糊加载。
+ * 加载前显示模糊 + 放大的占位（blur + scale），
+ * 加载完成后过渡到清晰。失败时回退到 SVG 占位图。
  * 根据 protection 配置禁用右键菜单与拖拽（挡小白，挡不住 F12）。
  */
 export default function WorkImage({
@@ -24,12 +24,14 @@ export default function WorkImage({
   loading = "lazy",
 }: WorkImageProps) {
   const [errored, setErrored] = useState(false);
+  const [loaded, setLoaded] = useState(false);
   const protection = siteContent.protection;
   const disableContextMenu = protection?.disableContextMenu ?? true;
   const disableDrag = protection?.disableDrag ?? true;
 
   useEffect(() => {
     setErrored(false);
+    setLoaded(false);
   }, [work.src]);
 
   const src = errored ? makePlaceholder(work) : work.src;
@@ -42,11 +44,16 @@ export default function WorkImage({
       loading={loading}
       decoding="async"
       onError={() => setErrored(true)}
-      className={`${reveal ? "image-reveal" : ""} ${className ?? ""}`}
+      onLoad={() => setLoaded(true)}
       draggable={!disableDrag}
       onContextMenu={
         disableContextMenu ? (e) => e.preventDefault() : undefined
       }
+      className={`${className ?? ""} transition-all duration-700 ${
+        loaded
+          ? "blur-0 scale-100 opacity-100"
+          : "blur-xl scale-105 opacity-60"
+      }`}
     />
   );
 }
