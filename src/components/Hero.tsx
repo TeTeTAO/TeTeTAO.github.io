@@ -12,7 +12,7 @@ export default function Hero() {
     <section
       id="top"
       className={`relative flex min-h-screen items-center justify-center overflow-hidden ${
-        heroImage ? "" : "bg-white"
+        heroImage ? "bg-charcoal" : "bg-white"
       }`}
     >
       {heroImage && (
