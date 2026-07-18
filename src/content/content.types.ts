@@ -63,6 +63,8 @@ export interface ProtectionConfig {
 export interface SiteContent {
   /** 作者名 / 工作室名，用于 Nav、Hero、Footer */
   brand: string;
+  /** Hero 区打招呼文案，放在品牌名上方 */
+  heroGreeting?: string;
   /** 一句话定位，Hero 副标题用 */
   tagline: string;
   /** Hero 区可选背景图（不填则用纯色 + 文字） */

@@ -1,16 +1,17 @@
 import { siteContent } from "@/content/content.config";
 
 /**
- * Hero：占近一屏，居中大标题 + tagline + 滚动提示。
- * 若配置了 heroImage 则作为背景图（带轻微暗化保证文字可读）。
+ * Hero：全屏背景图 + 居中叠字。
+ * 文字层次：打招呼（小字）→ 品牌名（大字）→ tagline。
+ * 白色文字 + 细阴影，在任何背景图上都清晰可读。
  */
 export default function Hero() {
-  const { brand, tagline, heroImage } = siteContent;
+  const { brand, heroGreeting, tagline, heroImage } = siteContent;
 
   return (
     <section
       id="top"
-      className={`relative flex min-h-[88vh] items-center justify-center overflow-hidden ${
+      className={`relative flex min-h-screen items-center justify-center overflow-hidden ${
         heroImage ? "" : "bg-white"
       }`}
     >
@@ -22,45 +23,47 @@ export default function Hero() {
             className="absolute inset-0 h-full w-full object-cover"
             draggable={false}
           />
-          <div className="absolute inset-0 bg-white/55" />
+          <div className="absolute inset-0 bg-black/15" />
         </>
       )}
 
       <div className="relative z-10 mx-auto max-w-gallery px-6 text-center md:px-10">
-        <div className="mb-6 inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-wider2 text-ash">
-          <span className="h-px w-8 bg-stone" />
-          <span>Portfolio · {new Date().getFullYear()}</span>
-          <span className="h-px w-8 bg-stone" />
-        </div>
+        {heroGreeting && (
+          <p
+            className={`font-sans text-sm uppercase tracking-wider2 ${
+              heroImage ? "text-white/90" : "text-ash"
+            }`}
+            style={{ textShadow: "0 1px 4px rgba(0,0,0,0.3)" }}
+          >
+            {heroGreeting}
+          </p>
+        )}
 
-        <h1 className="font-display text-5xl font-semibold leading-[1.05] tracking-tight text-ink md:text-7xl">
+        <h1
+          className={`mt-4 font-display text-6xl font-semibold leading-[1.05] tracking-tight md:text-8xl ${
+            heroImage ? "text-white" : "text-ink"
+          }`}
+          style={{ textShadow: "0 2px 8px rgba(0,0,0,0.35)" }}
+        >
           {brand}
         </h1>
 
-        <p className="mx-auto mt-6 max-w-2xl font-sans text-base leading-relaxed text-slate md:text-lg">
+        <p
+          className={`mx-auto mt-6 max-w-xl font-sans text-base leading-relaxed md:text-lg ${
+            heroImage ? "text-white/90" : "text-slate"
+          }`}
+          style={{ textShadow: "0 1px 4px rgba(0,0,0,0.3)" }}
+        >
           {tagline}
         </p>
-
-        <div className="mt-10 flex items-center justify-center gap-3">
-          <a
-            href="#works"
-            className="inline-flex items-center gap-2 rounded-full bg-blue px-6 py-2.5 font-sans text-sm font-medium text-white transition-colors hover:bg-blue-deep"
-          >
-            浏览作品
-          </a>
-          <a
-            href="#about"
-            className="inline-flex items-center gap-2 rounded-full border border-haze px-6 py-2.5 font-sans text-sm font-medium text-charcoal transition-colors hover:border-ash hover:text-ink"
-          >
-            关于
-          </a>
-        </div>
       </div>
 
       <a
         href="#works"
         aria-label="向下滚动"
-        className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2 font-mono text-[10px] uppercase tracking-wider2 text-ash transition-colors hover:text-blue"
+        className={`absolute bottom-10 left-1/2 z-10 -translate-x-1/2 font-mono text-[10px] uppercase tracking-wider2 transition-colors ${
+          heroImage ? "text-white/80 hover:text-white" : "text-ash hover:text-blue"
+        }`}
       >
         <span className="block animate-pulse">↓ scroll</span>
       </a>

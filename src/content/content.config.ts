@@ -38,8 +38,9 @@ import type { SiteContent } from "./content.types";
 export const siteContent: SiteContent = {
   // ─────────────── 站点信息 ───────────────
   brand: "特特特",
+  heroGreeting: "欢迎来到特特特",
   tagline: "绘画 · 装置 · 摄影 — 一处安静的展示空间。",
-  // heroImage: "/works/hero.jpg", // 留空则用纯色背景
+  heroImage: "/works/hero.png",
 
   // ─────────────── 类别（控制筛选 tab 顺序与文案） ───────────────
   categories: [
