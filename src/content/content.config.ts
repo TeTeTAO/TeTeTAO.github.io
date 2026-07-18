@@ -61,76 +61,53 @@ export const siteContent: SiteContent = {
   },
 
   // ─────────────── 作品 ───────────────
-  // featured: true 的作品会置顶展示在 Hero 下方的精选区
-  // 其余作品按类别筛选展示在下方网格中
+  // 图片放入 public/works/ 后，按顺序添加到下方数组即可
+  // category: painting / installation / photography
   works: [
-    // ===== 精选（置顶） =====
-    {
-      id: "featured-01",
-      src: "/works/featured-01.jpg",
-      title: "无题（蓝）",
-      medium: "布面油画",
-      year: 2024,
-      note: "整张画只剩一种颜色时，它就开始呼吸了。",
-      category: "painting",
-      featured: true,
-    },
-    {
-      id: "featured-02",
-      src: "/works/featured-02.jpg",
-      title: "悬浮之物 No.3",
-      medium: "综合材料装置",
-      year: 2024,
-      note: "把重量感从物体中抽离，让它停在半空。",
-      category: "installation",
-      featured: true,
-    },
-    {
-      id: "featured-03",
-      src: "/works/featured-03.jpg",
-      title: "凌晨四点的窗",
-      medium: "胶片摄影 35mm · Portra 400",
-      year: 2023,
-      note: "城市还没醒，光已经先到了。",
-      category: "photography",
-      featured: true,
-    },
-
     // ===== 绘画 =====
     {
       id: "painting-01",
       src: "/works/painting-01.jpg",
-      title: "夏日午后的回声",
-      medium: "布面油画",
-      year: 2024,
-      note: "光像融化的黄油，落在碎花窗帘上。",
+      title: "红色象的夜间独白",
+      medium: "水性综合材料",
+      year: 2026,
+      note: "在不该承载重量的玩具上，你暂时停止了与世界的交互。",
       category: "painting",
     },
     {
       id: "painting-02",
       src: "/works/painting-02.jpg",
-      title: "没人记得的房间",
-      medium: "木板油画",
-      year: 2024,
-      note: "祖母家的客厅，但所有家具都飘了起来。",
+      title: "蓝色机体的无航线研究",
+      medium: "综合材料",
+      year: 2026,
+      note: "这架机体被设计为摇动，却被我用于静止。飞行的概念被取消，只剩下关于\"起飞前\"的无限延长。",
       category: "painting",
     },
     {
       id: "painting-03",
       src: "/works/painting-03.jpg",
-      title: "镜子里的那个人",
-      medium: "纸本水彩 + 彩铅",
-      year: 2023,
-      note: "画完才发现镜子里不是我。",
+      title: "旋翼停机后的安静区",
+      medium: "综合材料",
+      year: 2026,
+      note: "旋翼的沉默是一种结构性的暂停。我在这暂停里观察自己的内部回声，它们与木质机体的空洞互相抵消。",
       category: "painting",
     },
     {
       id: "painting-04",
       src: "/works/painting-04.jpg",
-      title: "雨季的卧室",
-      medium: "布面油画",
-      year: 2023,
-      note: "连续下了二十一天的雨。",
+      title: "旋转结构中的光学残留",
+      medium: "色粉",
+      year: 2026,
+      note: "在循环的光影里，情绪被迫重复成同一个瞬间。",
+      category: "painting",
+    },
+    {
+      id: "painting-05",
+      src: "/works/painting-05.jpg",
+      title: "静水上的多色体排列",
+      medium: "水彩",
+      year: 2026,
+      note: "停泊的色块在水面上排列成一组被延迟的前进。",
       category: "painting",
     },
 
