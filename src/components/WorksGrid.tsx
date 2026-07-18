@@ -92,12 +92,12 @@ export default function WorksGrid() {
   return (
     <section
       id="works"
-      className="bg-white pt-12 pb-24 md:pt-16 md:pb-32"
+      className="bg-white pt-2 pb-24 md:pt-4 md:pb-32"
       style={{ scrollMarginTop: "1rem" }}
     >
       <div className="mx-auto max-w-gallery px-6 md:px-10">
         {/* 标题 */}
-        <div className="reveal mb-10 flex items-baseline gap-4 md:mb-14">
+        <div className="reveal mb-6 flex items-baseline gap-4 md:mb-8">
           <span className="font-mono text-[11px] uppercase tracking-wider2 text-blue">
             01
           </span>
@@ -110,7 +110,7 @@ export default function WorksGrid() {
         </div>
 
         {/* 筛选 tab */}
-        <div className="reveal mb-12 flex flex-wrap items-center gap-2 border-b border-haze pb-4">
+        <div className="reveal mb-8 flex flex-wrap items-center gap-2 border-b border-haze pb-4">
           {tabs.map((t) => {
             const active = filter === t.id;
             return (
