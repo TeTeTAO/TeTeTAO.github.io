@@ -26,6 +26,16 @@ export default function Hero() {
           }`}
         />
       )}
+
+      {/* scroll 提示：底部居中，避开右下角导航 */}
+      <a
+        href="#works"
+        aria-label="向下滚动"
+        className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2 flex flex-col items-center gap-2 font-mono text-[10px] uppercase tracking-wider2 text-ink/70 mix-blend-multiply transition-colors hover:text-blue"
+      >
+        <span>scroll</span>
+        <span className="block animate-bounce text-base leading-none">↓</span>
+      </a>
     </section>
   );
 }
