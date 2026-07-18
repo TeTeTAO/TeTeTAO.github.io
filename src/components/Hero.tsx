@@ -2,8 +2,8 @@ import { useState } from "react";
 import { siteContent } from "@/content/content.config";
 
 /**
- * Hero：全屏背景图 + 居中手绘字。
- * 默认显示「你好」（马善政毛笔行书），hover 变「特特特」。
+ * Hero：全屏背景图 + 居中铅笔手写体。
+ * 默认显示「Hi」（Gloria Hallelujah），hover 变「TeTeTAO」。
  * mix-blend-mode: multiply 让黑色字融入图里，像印上去一样不突兀。
  * 图片渐进淡入：加载前白底，加载完淡入显示。
  */
@@ -49,9 +49,9 @@ export default function Hero() {
           </p>
         )}
 
-        {/* 手绘字主体：默认「你好」，hover 变「特特特」 */}
+        {/* 手写体主体：默认「Hi」，hover 变「TeTeTAO」 */}
         <h1
-          className="relative mt-6 font-hand text-7xl leading-[1.1] text-ink md:text-9xl"
+          className="relative mt-6 font-hand text-8xl leading-[1.1] text-ink md:text-[10rem]"
           style={{
             mixBlendMode: "multiply",
           }}
@@ -61,17 +61,17 @@ export default function Hero() {
               hovered ? "opacity-0" : "opacity-100"
             }`}
           >
-            你好
+            Hi
           </span>
           <span
             className={`absolute inset-x-0 text-center transition-opacity duration-300 ${
               hovered ? "opacity-100" : "opacity-0"
             }`}
           >
-            特特特
+            TeTeTAO
           </span>
           {/* 占位撑开高度，避免 absolute 塌陷 */}
-          <span className="invisible">特特特</span>
+          <span className="invisible">TeTeTAO</span>
         </h1>
 
         <p

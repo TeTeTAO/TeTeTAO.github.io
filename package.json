@@ -12,9 +12,9 @@
     "prepare:images": "node scripts/prepare-images.mjs"
   },
   "dependencies": {
+    "@fontsource/gloria-hallelujah": "^5.2.8",
     "@fontsource/inter": "^5.2.5",
     "@fontsource/jetbrains-mono": "^5.2.8",
-    "@fontsource/ma-shan-zheng": "^5.2.9",
     "@fontsource/noto-sans-sc": "^5.2.5",
     "clsx": "^2.1.1",
     "react": "^18.3.1",

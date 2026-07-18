@@ -52,7 +52,7 @@ export default {
         display: ['"Inter"', '"Noto Sans SC"', "system-ui", "sans-serif"],
         body: ['"Inter"', '"Noto Sans SC"', "system-ui", "sans-serif"],
         mono: ['"JetBrains Mono"', "ui-monospace", "monospace"],
-        hand: ['"Ma Shan Zheng"', '"Noto Sans SC"', "cursive"],
+        hand: ['"Gloria Hallelujah"', "cursive"],
       },
       letterSpacing: {
         tightest: "-0.04em",

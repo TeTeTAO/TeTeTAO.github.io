@@ -38,7 +38,7 @@ import type { SiteContent } from "./content.types";
 export const siteContent: SiteContent = {
   // ─────────────── 站点信息 ───────────────
   brand: "特特特",
-  heroGreeting: "欢迎来到特特特",
+  heroGreeting: "Welcome to my portfolio",
   tagline: "绘画 · 装置 · 摄影 — 一处安静的展示空间。",
   heroImage: "/works/hero.jpg",
 
