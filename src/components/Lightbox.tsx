@@ -89,7 +89,7 @@ export default function Lightbox() {
         <figcaption className="mt-4 flex items-end justify-between gap-6 text-white">
           <div>
             <div className="font-mono text-[10px] uppercase tracking-caption text-blue">
-              {catMeta?.caption ?? work.category} · {work.medium} · {work.year}
+              {[catMeta?.caption ?? work.category, work.medium, work.year].filter(Boolean).join(" · ")}
             </div>
             <h3 className="mt-1.5 font-display text-2xl font-semibold leading-tight">
               {work.title}

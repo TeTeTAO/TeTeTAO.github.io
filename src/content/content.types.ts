@@ -21,8 +21,8 @@ export interface Work {
   src: string;
   /** 作品标题 */
   title: string;
-  /** 媒介，例如「布面油画」「综合材料装置」「胶片摄影 35mm Portra 400」 */
-  medium: string;
+  /** 媒介，例如「布面油画」「综合材料装置」「胶片摄影 35mm Portra 400」；不填则不显示 */
+  medium?: string;
   /** 年份，例如 2024 */
   year: string | number;
   /** 一两句话创作手记 */

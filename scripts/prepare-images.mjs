@@ -40,7 +40,8 @@ const OUT_DIR = join(process.cwd(), "public", "works");
 // 确保 sharp 已安装
 async function ensureSharp() {
   try {
-    return await import("sharp");
+    const mod = await import("sharp");
+    return mod.default;
   } catch {
     console.log("首次运行，正在安装 sharp...");
     const res = spawnSync("pnpm", ["add", "-D", "sharp"], {
@@ -51,7 +52,8 @@ async function ensureSharp() {
       console.error("sharp 安装失败，请手动运行：pnpm add -D sharp");
       process.exit(1);
     }
-    return await import("sharp");
+    const mod = await import("sharp");
+    return mod.default;
   }
 }
 
@@ -93,6 +95,7 @@ async function processOne(sharp, file) {
   );
 
   // 先 resize（保持比例，最大边不超过 MAX_EDGE）+ 清 EXIF
+  // sharp 默认输出不带 EXIF（除非调用 withMetadata），rotate() 会按 EXIF 方向自动旋转
   let pipeline = sharp(inPath, { failOn: "none" })
     .rotate() // 按相机方向自动旋转
     .resize({
@@ -100,12 +103,27 @@ async function processOne(sharp, file) {
       height: MAX_EDGE,
       fit: "inside",
       withoutEnlargement: true,
-    })
-    .removeExif(); // 关键：清除所有 EXIF（拍摄位置、设备、时间等隐私）
+    }); // 默认不保留 EXIF（拍摄位置、设备、时间等隐私）
 
   // 叠加水印
-  const w = Math.min(meta.width, MAX_EDGE);
-  const h = Math.round(w * (meta.height / meta.width));
+  // 计算 resize 后的实际输出尺寸（fit: "inside"，保持比例，最大边不超过 MAX_EDGE）
+  const ratio = meta.width / meta.height;
+  let w, h;
+  if (meta.width >= meta.height) {
+    w = Math.min(meta.width, MAX_EDGE);
+    h = Math.round(w / ratio);
+    if (h > MAX_EDGE) {
+      h = MAX_EDGE;
+      w = Math.round(h * ratio);
+    }
+  } else {
+    h = Math.min(meta.height, MAX_EDGE);
+    w = Math.round(h * ratio);
+    if (w > MAX_EDGE) {
+      w = MAX_EDGE;
+      h = Math.round(w / ratio);
+    }
+  }
   const overlay = Buffer.from(makeWatermarkSvg(w, h));
   pipeline = pipeline.composite([
     { input: overlay, blend: "over", gravity: "center" },

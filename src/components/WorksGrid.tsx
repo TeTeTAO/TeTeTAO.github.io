@@ -188,7 +188,7 @@ export default function WorksGrid() {
               <figcaption className="mt-5 flex items-baseline justify-between gap-4">
                 <div>
                   <div className="font-mono text-[10px] uppercase tracking-caption text-ash">
-                    {current.medium} · {current.year}
+                    {[current.medium, current.year].filter(Boolean).join(" · ")}
                   </div>
                   <h3 className="mt-1.5 font-display text-2xl font-semibold leading-tight text-ink">
                     {current.title}
